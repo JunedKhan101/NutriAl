@@ -7,7 +7,7 @@ function Data({data}) {
             return <p className="card-text">"None"</p>;
         } else {
             let str = "";
-            data.healthLabels.map( (val) => str += (val + ", "))
+            data.healthLabels.map( (val) => str += (val + ", "));
             return <p className="card-text">{str}</p>;
         }
     }
@@ -52,38 +52,62 @@ function Data({data}) {
             );
         });
     }
+    const Test = () => {
+        try {
+            return(
+                <div className="card">
+                  <div className="card-header">
+                    {data.ingredients ? data.ingredients[0].text : "loading..."}
+                  </div>
+                  <div className="card-body">
+                    <h3 className="card-title">Information</h3>
+                    {data.ingredients ? getParsed() : "loading..."}
+                  </div>
+                  <div className="card-body">
+                    <h3 className="card-title">Calories: {data.calories}</h3>
+                  </div>
+                  <div className="card-body">
+                    <h3 className="card-title">Total nutrients Kcal</h3>
+                    {data.totalNutrientsKCal ? getObject("nutrientsKcal") : "loading..."}
+                  </div>
+                  <div className="card-body">
+                    <h3 className="card-title">Health Labels</h3>
+                    {data.healthLabels ? getHealthLabels() : "loading..."}
+                  </div>
+                  <div className="card-body">
+                    <h3 className="card-title">Cautions</h3>
+                    {data.cautions ? getCautions() : "loading..."}
+                  </div>
+                  <div className="card-body">
+                    <h3 className="card-title">Total Nutrients</h3>
+                    {data.totalNutrients ? getObject("nutrients") : "loading..."}
+                  </div>
+                  <div className="card-body">
+                    <h3 className="card-title">Total Daily</h3>
+                    {data.totalNutrients ? getObject("daily") : "loading..."}
+                  </div>
+                </div>
+            );
+        }
+        catch (e) {
+            return(
+                <div className="card">
+                  <div className="card-header">
+                    An Error Occured
+                  </div>
+                  <div className="card-body">
+                    <h3 className="card-title">Error</h3>
+                    Sorry I cannot understand want you mean here are couple of things you can try:<br />
+                    1. Always add a quantity eg. 1 Apple<br />
+                    2. Try to add a unit or measure eg. 1 cup coffee or 1 dozen banana<br />
+                  </div>
+                </div>
+            );
+        }
+    }
     return(
-        <div className="card">
-          <div className="card-header">
-            {data.ingredients ? data.ingredients[0].text : "loading..."}
-          </div>
-          <div className="card-body">
-            <h3 className="card-title">Information</h3>
-            {data.ingredients ? getParsed() : "loading..."}
-          </div>
-          <div className="card-body">
-            <h3 className="card-title">Calories: {data.calories}</h3>
-          </div>
-          <div className="card-body">
-            <h3 className="card-title">Total nutrients Kcal</h3>
-            {data.totalNutrientsKCal ? getObject("nutrientsKcal") : "loading..."}
-          </div>
-          <div className="card-body">
-            <h3 className="card-title">Health Labels</h3>
-            {data.healthLabels ? getHealthLabels() : "loading..."}
-          </div>
-          <div className="card-body">
-            <h3 className="card-title">Cautions</h3>
-            {data.cautions ? getCautions() : "loading..."}
-          </div>
-          <div className="card-body">
-            <h3 className="card-title">Total Nutrients</h3>
-            {data.totalNutrients ? getObject("nutrients") : "loading..."}
-          </div>
-          <div className="card-body">
-            <h3 className="card-title">Total Daily</h3>
-            {data.totalNutrients ? getObject("daily") : "loading..."}
-          </div>
+        <div>
+        {Test()}
         </div>
     );
 }

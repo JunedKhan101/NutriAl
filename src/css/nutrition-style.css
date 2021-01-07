@@ -100,7 +100,7 @@ p {
   text-align: left;
 }
 .performance-facts__table--grid td:last-child::before {
-  content: "GÇó";
+  content: "";
   font-weight: bold;
   margin: 0 0.25rem 0 0;
 }

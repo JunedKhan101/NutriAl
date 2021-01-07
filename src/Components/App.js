@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Data from "./Data";
-import data from "../ExampleObject";
+//import data from "../ExampleObject";
 
 function App() {
     const [datastate, setData] = useState({});
@@ -11,8 +11,8 @@ function App() {
     useEffect(() => { getData(); }, [query]);
 
     const getData = async () => {
-        //const response = await fetch(`https://api.edamam.com/api/nutrition-data?app_id=${process.env.REACT_APP_APP_ID}&app_key=${process.env.REACT_APP_APP_KEY}&ingr=${query}`);
-        //const data = await response.json();
+        const response = await fetch(`https://api.edamam.com/api/nutrition-data?app_id=${process.env.REACT_APP_APP_ID}&app_key=${process.env.REACT_APP_APP_KEY}&ingr=${query}`);
+        const data = await response.json();
         setData(data);
         // console.log(data);
     }

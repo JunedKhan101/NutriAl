@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.search-textinput {
+    display: inline-block;
+    width: 30%;
+    position: relative;
+    left: 32%;
+    top: 50px;
+}
+.search-button {
+    position: relative;
+    left: 32%;
+    top: 47px;
+    bottom: 3px;
+}
+.viewbutton{
+    position: relative;
+    left: 45%;
+    top: 70px;
+    bottom: 3px;
+}
+.space {
+    position: absolute;
+    left: 50%;
+    top: 500%;
+    bottom: 0px;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 300px;
+    visibility: hidden;
+}

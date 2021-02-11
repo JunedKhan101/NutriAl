@@ -1,0 +1,36 @@
+.performance-facts {
+    position: relative;
+    left: 28%;
+    top: 100px;
+    width: 40%;
+}
+@media only screen and (max-width: 1000px) {
+    .performance-facts {
+            width: 60%;
+            left: 18%;
+    }
+}
+@media only screen and (max-width: 627px) {
+    .performance-facts {
+            width: 70%;
+            left: 14%;
+    }
+}
+@media only screen and (max-width: 478px) {
+    .performance-facts {
+            width: 80%;
+            left: 8%;
+    }
+}
+@media only screen and (max-width: 427px) {
+    .performance-facts {
+            width: 90%;
+            left: 1%;
+    }
+}
+@media only screen and (max-width: 377px) {
+    .performance-facts {
+            width: 100%;
+            left: -20px;
+    }
+}

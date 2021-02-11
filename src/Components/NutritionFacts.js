@@ -1,16 +1,10 @@
 import React from "react";
-
+import "../css/NutritionFacts-style.css";
 export default function NutritionFacts({data}) {
-    let container_style = {
-        position: 'relative',
-        left: '28%',
-        top: '100px',
-        width: '40%',
-    }
     return (
-        <section className="performance-facts" style={container_style}>
+        <section className="performance-facts">
           <header className="performance-facts__header">
-            <h1 className="performance-facts__title">Nutrition Facts</h1>
+            <h1 className="performance-facts__title">Nutrition Facts</h1><p>{data.ingredients ? data.ingredients[0].text : "loading..."}</p>
           </header>
           <table className="performance-facts__table">
             <thead>

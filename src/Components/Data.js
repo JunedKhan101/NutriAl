@@ -54,6 +54,7 @@ function Data({data, viewstate}) {
             );
         });
     }
+    //The Main Function
     const Main = () => {
         try {
             if (viewstate) {

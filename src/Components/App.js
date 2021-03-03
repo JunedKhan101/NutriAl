@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Data from "./Data";
 import data from "../ExampleObject";
 import "../css/index.css";
+require('dotenv').config()
 
 function App() {
     const [datastate, setData] = useState({});

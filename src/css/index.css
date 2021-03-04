@@ -26,17 +26,53 @@ code {
 }
 .viewbutton{
     position: relative;
-    left: 45%;
+    left: 42%;
+    top: 70px;
+    bottom: 3px;
+}
+.graph-btn {
+    position: relative;
+    left: 43%;
     top: 70px;
     bottom: 3px;
 }
 .space {
     position: absolute;
     left: 50%;
-    top: 500%;
+    top: 100%;
     bottom: 0px;
     transform: translate(-50%, -50%);
     width: 70%;
     height: 300px;
     visibility: hidden;
+}
+@media only screen and (max-width: 999px) {
+  .viewbutton {
+    left: 40%;
+  }
+  .graph-btn {
+    left: 41%;
+  }
+}
+@media only screen and (max-width: 776px) {
+  .viewbutton {
+    left: 35%;
+  }
+  .graph-btn {
+    left: 36%;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .viewbutton {
+    left: 25%;
+  }
+  .graph-btn {
+    left: 26%;
+  }
+  .search-button {
+    left: 25%;
+  }
+  .search-textinput {
+    left: 25%;
+  }
 }

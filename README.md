@@ -1,4 +1,4 @@
 # NutriAl
 Get nutrition information about any food
 
-<h3>View the App: https://nutrial.herokuapp.com/</h3>
+<h5>View the App: https://nutrial.herokuapp.com/</h5>

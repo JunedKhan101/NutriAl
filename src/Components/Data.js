@@ -23,21 +23,6 @@ function Data({data, viewstate}) {
             return <p className="card-text">{str}</p>;
         }
     }
-    const getParsed = () => {
-        if (data.ingredients[0].parsed[0]) {
-            var dataobj = data.ingredients[0].parsed[0];
-            return (
-                <div className="card-text">
-                    <text>Quantity</text>: {dataobj.quantity}<br />
-                    <text>Measure</text>: {dataobj.measure}<br />
-                    <text>Food Match</text>: {dataobj.foodMatch}<br />
-                    <text>Food</text>: {dataobj.food}<br />
-                </div>
-            );
-        } else {
-            return <p className="card-text">None</p>;
-        }
-    }
     const getObject = (parameter) => {
         if (parameter == "daily")
             var dataobj = data.totalDaily;
@@ -58,14 +43,11 @@ function Data({data, viewstate}) {
     const Main = () => {
         try {
             if (viewstate) {
+                const temp = data.totalNutrients.NA.quantity;
                 return (
                     <div className="card">
                       <div className="card-header">
-                        {data.ingredients ? data.ingredients[0].text : "loading..."}
-                      </div>
-                      <div className="card-body">
-                        <h3 className="card-title">Input interpreted as:</h3>
-                        {data.ingredients ? getParsed() : "loading..."}
+                        {data.text ? data.text : "loading..."}
                       </div>
                       <div className="card-body">
                         <h3 className="card-title">Calories: {data.calories}</h3>
@@ -94,6 +76,7 @@ function Data({data, viewstate}) {
                 );
             }
             else {
+                const temp = data.totalNutrients.NA.quantity;
                 return (
                     <NutritionFacts data={data} />
                 );

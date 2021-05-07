@@ -3,16 +3,18 @@ import { useLocation } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
 import zoom from 'chartjs-plugin-zoom';
 import "../css/graph.css";
+import "../css/Datastyle.css";
 
 export default function Graph() {
   const location = useLocation();
-  const data = location.state.datastate ;
+  const data = location.state.datastate;
+  try {
     var basicdata = {
       labels: ["Calories", "Energy(kcal)", "Total Fat(g)", "Saturated Fat(g)", "Cholestrol(mg)", 
       "total carbohydrate(g)", "Dietry Fieber(g)", "Sugars(g)", "Protein(g)"],
       datasets: [
         {
-          label: data.ingredients[0].text,
+          label: data.text,
           data: [data.calories, data.totalNutrients.ENERC_KCAL.quantity,
             data.totalNutrients.FAT.quantity, data.totalNutrients.FASAT.quantity, 
             data.totalNutrients.CHOLE.quantity, data.totalNutrients.CHOCDF.quantity,
@@ -50,7 +52,7 @@ export default function Graph() {
       labels: ["Total Fat(g)", "Saturated(g)", "Monosaturated(g)", "Polyunsaturated(g)"],
       datasets: [
         {
-          label: `Fats in ${data.ingredients[0].text}`,
+          label: `Fats in ${data.text}`,
           data: [
             data.totalNutrients.FAT.quantity, data.totalNutrients.FASAT.quantity, 
             data.totalNutrients.FAMS.quantity, data.totalNutrients.FAPU.quantity,
@@ -77,7 +79,7 @@ export default function Graph() {
       "Vitamin B12(µg)", "Vitamin D(µg)", "Vitamin E(mg)", "Vitamin K(µg)", "Folic acid(µg)"],
       datasets: [
         {
-          label: `Nutrients in ${data.ingredients[0].text}`,
+          label: `Nutrients in ${data.text}`,
           data: [
             data.totalNutrients.NA.quantity, data.totalNutrients.CA.quantity,
             data.totalNutrients.MG.quantity, data.totalNutrients.K.quantity, 
@@ -185,4 +187,20 @@ export default function Graph() {
       </div>
     </div>
   );
+  }
+  catch(e) {
+    return(
+      <div className="card">
+        <div className="card-header">
+          Error
+        </div>
+        <div className="card-body">
+          <h3 className="card-title">An Error Occurred</h3>
+          Sorry I cannot understand what you mean here are couple of things you can try:<br />
+          1. Always add a quantity eg. 1 Apple<br />
+          2. Try to add a unit or measure eg. 1 cup coffee or 1 dozen banana<br />
+        </div>
+      </div>
+    );
+  }
 }

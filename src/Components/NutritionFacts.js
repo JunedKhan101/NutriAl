@@ -4,7 +4,7 @@ export default function NutritionFacts({data}) {
     return (
         <section className="performance-facts">
           <header className="performance-facts__header">
-            <h1 className="performance-facts__title">Nutrition Facts</h1><p>{data.ingredients ? data.ingredients[0].text : "loading..."}</p>
+            <h1 className="performance-facts__title">Nutrition Facts</h1><p>{data.text ? data.text : "loading..."}</p>
           </header>
           <table className="performance-facts__table">
             <thead>

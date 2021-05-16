@@ -163,26 +163,18 @@ export default function Graph() {
             }
         }
     };
-  const mystyle = {
-    width: "900px",
-    height: "600px"
-  }
-  const otherstyle = {
-    width: "1000px",
-    height: "600px" 
-  }
   return (
     <div className="chart">
       <h1>Basic Information</h1>
-      <div className="basic-graph" style={mystyle}>
+      <div className="basic-graph">
         <Bar data={basicdata} options={options} />
       </div>
       <h1>Fats</h1>
-      <div className="fat-graph" style={mystyle}>
+      <div className="fat-graph">
         <Bar data={fatdata} options={options} />
       </div>
       <h1>Other Nutrients</h1>
-      <div className="other-graph" style={otherstyle}>
+      <div className="other-graph">
         <Bar data={otherdata} options={options} />
       </div>
     </div>

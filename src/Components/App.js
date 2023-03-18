@@ -5,13 +5,12 @@ import "../css/index.css";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 export default function App() {
     return (
-      <div className="App">
+      <div className="app">
         <Router>
             <Switch>
                 <Route exact path="/" component={Main} />

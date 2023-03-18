@@ -1,11 +1,13 @@
 import React from "react";
+import NutritionFacts from "./NutritionFacts";
+import Loading from "./Loading";
+import Error from "./Error";
 import "../css/Datastyle.css";
 import "../css/nutrition-style.css";
-import NutritionFacts from "./NutritionFacts";
 
-function Data({data, viewstate}) {
+function Data({data, viewstate, isSuccessState, isLoadingState}) {
     const getHealthLabels = () => {
-        if (data.healthLabels.length == 0) {
+        if (data.healthLabels.length === 0) {
             return <p className="card-text">"None"</p>;
         } else {
             let str = "";
@@ -14,7 +16,7 @@ function Data({data, viewstate}) {
         }
     }
     const getCautions = () => {
-        if (data.cautions.length == 0) {
+        if (data.cautions.length === 0) {
             return <p className="card-text">None</p>;
         }
         else {
@@ -24,12 +26,13 @@ function Data({data, viewstate}) {
         }
     }
     const getObject = (parameter) => {
-        if (parameter == "daily")
-            var dataobj = data.totalDaily;
-        else if (parameter == "nutrients")
-            var dataobj = data.totalNutrients;
-        else if (parameter == "nutrientsKcal")
-            var dataobj = data.totalNutrientsKCal;
+        var dataobj;
+        if (parameter === "daily")
+            dataobj = data.totalDaily;
+        else if (parameter === "nutrients")
+            dataobj = data.totalNutrients;
+        else if (parameter === "nutrientsKcal")
+            dataobj = data.totalNutrientsKCal;
 
         return Object.keys(dataobj).map( (obj, i) => {
             return(
@@ -39,11 +42,13 @@ function Data({data, viewstate}) {
             );
         });
     }
-    //The Main Function
+    // The Main Function
     const Main = () => {
-        try {
+        if (isLoadingState !== true) {
+            if (isSuccessState === false) {
+                return (<Error />);
+            }
             if (viewstate) {
-                const temp = data.totalNutrients.NA.quantity;
                 return (
                     <div className="card">
                       <div className="card-header">
@@ -76,30 +81,17 @@ function Data({data, viewstate}) {
                 );
             }
             else {
-                const temp = data.totalNutrients.NA.quantity;
                 return (
                     <NutritionFacts data={data} />
                 );
             }
         }
-        catch (e) {
-            return (
-                <div className="card">
-                  <div className="card-header">
-                    Error
-                  </div>
-                  <div className="card-body">
-                    <h3 className="card-title">An Error Occurred</h3>
-                    Sorry I cannot understand what you mean here are couple of things you can try:<br />
-                    1. Always add a quantity eg. 1 Apple<br />
-                    2. Try to add a unit or measure eg. 1 cup coffee or 1 dozen banana<br />
-                  </div>
-                </div>
-            );
+        else {
+            return <Loading />
         }
     }
     return(
-        <div>
+        <div className="main-container">
             {Main()}
         </div>
     );

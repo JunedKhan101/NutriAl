@@ -1,7 +1,5 @@
-import react, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
-import zoom from 'chartjs-plugin-zoom';
 import "../css/graph.css";
 import "../css/Datastyle.css";
 

@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import Data from "./Data";
-import data from "../ExampleObject";
-import Graph from "./Graph";
 import { useHistory } from "react-router-dom";
 import "../css/index.css";
 require('dotenv').config()
@@ -10,16 +8,30 @@ function Main() {
     const [datastate, setData] = useState({});
     const [search, setSearch] = useState("");
     const [query, setQuery] = useState("1 ounce walnuts");
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     let [button, setButton] = useState(false);
-    useEffect(() => { getData(); }, [query]);
+    useEffect(() => {
+        const getData = async () => {
+            setIsLoading(true);
+            console.log("query: ", query);
+            const response = await fetch(`https://api.edamam.com/api/nutrition-data?app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}&ingr=${query}`);
+            var data = await response.json();
+            data.text = query;
+            setData(data);
+            // console.log(data);
+            if (data && data.ingredients && typeof data.ingredients[0] !== 'undefined' && typeof data.ingredients[0].parsed !== 'undefined' && typeof data.ingredients[0].parsed[0] !== 'undefined') {
+                console.log("parsed: ", true);
+                setIsSuccess(true);
+            }
+            else {
+                setIsSuccess(false);
+            }
+            setIsLoading(false);
+        }
+        getData();
+    }, [query]);
     let history = useHistory();
-    const getData = async () => {
-        const response = await fetch(`https://api.edamam.com/api/nutrition-data?app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}&ingr=${query}`);
-        const data = await response.json();
-        data.text = query;
-        setData(data);
-        console.log(data);
-    }
     const updateSearch = e => {
         setSearch(e.target.value);
     }
@@ -49,14 +61,14 @@ function Main() {
     }
     const renderMain = () => {
         return (
-            <div className="App">
+            <div className="main">
                 <form className="form-group" onSubmit={getSearch}>
                     <input className="form-control search-textinput" type="text" value={search} onChange={updateSearch} />&nbsp;
                     <input className="btn btn-primary search-button" type="submit" value="search" />
                 </form>
                 {renderButton()}
-                <Data data={datastate} viewstate={button} />
-                <div className="space"></div>
+                
+                <Data data={datastate} viewstate={button} isSuccessState={isSuccess} isLoadingState={isLoading}/>
             </div>
         );
     };

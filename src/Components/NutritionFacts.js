@@ -9,14 +9,14 @@ export default function NutritionFacts({data}) {
           <table className="performance-facts__table">
             <thead>
               <tr>
-                <th colspan="3" className="small-info">
+                <th colSpan="3" className="small-info">
                   Amount Per Serving
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th colspan="2">
+                <th colSpan="2">
                   <b>Calories:</b>
                   &nbsp;{data.calories}
                 </th>
@@ -26,12 +26,12 @@ export default function NutritionFacts({data}) {
                 </td>
               </tr>
               <tr className="thick-row">
-                <td colspan="3" className="small-info">
+                <td colSpan="3" className="small-info">
                   <b>% Daily Value*</b>
                 </td>
               </tr>
               <tr>
-                <th colspan="2">
+                <th colSpan="2">
                   <b>Total Fat:</b>
                   &nbsp;{data.totalNutrients ? (data.totalNutrients.FAT ? data.totalNutrients.FAT.quantity + data.totalNutrients.FAT.unit : "None") : "loading"}
                 </th>
@@ -61,7 +61,7 @@ export default function NutritionFacts({data}) {
                 </td>
               </tr>
               <tr>
-                <th colspan="2">
+                <th colSpan="2">
                   <b>Cholesterol:</b>
                   &nbsp;{data.totalNutrients ? (data.totalNutrients.CHOLE ? data.totalNutrients.CHOLE.quantity.toPrecision(3) + data.totalNutrients.CHOLE.unit : "None") : "loading"}
                 </th>
@@ -70,7 +70,7 @@ export default function NutritionFacts({data}) {
                 </td>
               </tr>
               <tr>
-                <th colspan="2">
+                <th colSpan="2">
                   <b>Sodium:</b>
                   &nbsp;{data.totalNutrients ? (data.totalNutrients.NA ? data.totalNutrients.NA.quantity.toPrecision(5) + data.totalNutrients.NA.unit : "None") : "loading"}
                 </th>
@@ -79,7 +79,7 @@ export default function NutritionFacts({data}) {
                 </td>
               </tr>
               <tr>
-                <th colspan="2">
+                <th colSpan="2">
                   <b>Total Carbohydrate:</b>
                   &nbsp;{data.totalNutrients ? (data.totalNutrients.CHOCDF ? data.totalNutrients.CHOCDF.quantity.toPrecision(4) + data.totalNutrients.CHOCDF.unit : "None") : "loading"}
                 </th>
@@ -109,7 +109,7 @@ export default function NutritionFacts({data}) {
                 </td>
               </tr>
               <tr className="thick-end">
-                <th colspan="2">
+                <th colSpan="2">
                   <b>Protein:</b>
                   &nbsp;{data.totalNutrients ? (data.totalNutrients.PROCNT ? data.totalNutrients.PROCNT.quantity.toPrecision(3) + data.totalNutrients.PROCNT.unit : "None") : "loading"}
                 </th>

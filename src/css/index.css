@@ -2,58 +2,24 @@ html, body, #root, .main, .app, .main {
   width: 100%;
   height: 100%;
 }
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+.search-form {
+  width: 100%;
+  padding-top: 2rem;
+}
 .search-textinput {
     display: inline-block;
     width: 30%;
-    position: relative;
-    left: 32%;
-    top: 50px;
 }
-.search-button {
-    position: relative;
-    left: 32%;
-    top: 47px;
-    bottom: 3px;
+.viewbutton {
+  margin-right: 1rem;
 }
-.viewbutton{
-    position: relative;
-    left: 42%;
-    top: 70px;
-    bottom: 3px;
-}
-.graph-btn {
-    position: relative;
-    left: 43%;
-    top: 70px;
-    bottom: 3px;
-}
-@media only screen and (max-width: 999px) {
-  .viewbutton {
-    left: 40%;
-  }
-  .graph-btn {
-    left: 41%;
-  }
-}
-@media only screen and (max-width: 776px) {
-  .viewbutton {
-    left: 35%;
-  }
-  .graph-btn {
-    left: 36%;
-  }
-}
-@media only screen and (max-width: 430px) {
-  .viewbutton {
-    left: 25%;
-  }
-  .graph-btn {
-    left: 26%;
-  }
-  .search-button {
-    left: 25%;
-  }
-  .search-textinput {
-    left: 25%;
-  }
+.welcome-msg {
+  padding-top: 4rem;
 }

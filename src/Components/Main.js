@@ -7,7 +7,7 @@ require('dotenv').config()
 function Main() {
     const [datastate, setData] = useState({});
     const [search, setSearch] = useState("");
-    const [query, setQuery] = useState("1 ounce walnuts");
+    const [query, setQuery] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     let [button, setButton] = useState(false);
@@ -29,7 +29,8 @@ function Main() {
             }
             setIsLoading(false);
         }
-        getData();
+        if (query)
+            getData();
     }, [query]);
     let history = useHistory();
     const updateSearch = e => {
@@ -62,13 +63,15 @@ function Main() {
     const renderMain = () => {
         return (
             <div className="main">
-                <form className="form-group" onSubmit={getSearch}>
+                <form className="form-group search-form" onSubmit={getSearch}>
                     <input className="form-control search-textinput" type="text" value={search} onChange={updateSearch} />&nbsp;
                     <input className="btn btn-primary search-button" type="submit" value="search" />
                 </form>
                 {renderButton()}
                 
-                <Data data={datastate} viewstate={button} isSuccessState={isSuccess} isLoadingState={isLoading}/>
+                {!query ? (<h1 className="welcome-msg">Welcome! Please type something...</h1>) : 
+                    (<Data data={datastate} viewstate={button} isSuccessState={isSuccess} isLoadingState={isLoading}/>)
+                }
             </div>
         );
     };

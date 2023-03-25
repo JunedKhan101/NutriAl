@@ -19,8 +19,8 @@ function Main() {
             var data = await response.json();
             data.text = query;
             setData(data);
-            // console.log(data);
-            if (data && data.ingredients && typeof data.ingredients[0] !== 'undefined' && typeof data.ingredients[0].parsed !== 'undefined' && typeof data.ingredients[0].parsed[0] !== 'undefined') {
+            console.log(data);
+            if (data && data.ingredients && typeof data.ingredients[0] !== 'undefined' && typeof data.ingredients[0].parsed !== 'undefined' && typeof data.ingredients[0].parsed[0] !== 'undefined' && data.ingredients[0].parsed[0].status === "OK") {
                 console.log("parsed: ", true);
                 setIsSuccess(true);
             }
@@ -61,7 +61,7 @@ function Main() {
                 </form>
                 {renderButton()}
                 
-                {!query ? (<h1 className="welcome-msg">Welcome! Please type something...</h1>) : 
+                {!query ? (<div className="welcome-msg"><h1>Welcome!</h1><p>Search a food to show its nutrients</p></div>) : 
                     (<Data data={datastate} viewstate={button} isSuccessState={isSuccess} isLoadingState={isLoading}/>)
                 }
             </div>

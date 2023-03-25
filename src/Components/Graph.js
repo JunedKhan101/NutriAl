@@ -28,7 +28,6 @@ export default function Graph() {
             "rgba(0, 0, 255, 0.4)",
             "rgba(255, 20, 147, 0.4)",
             "rgba(135, 206, 250, 0.4)"
-
           ],
           borderColor: [
             "rgba(255, 215, 0, 1)",

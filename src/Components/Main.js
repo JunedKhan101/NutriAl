@@ -45,27 +45,19 @@ function Main() {
         history.push({pathname: '/graph', state: {datastate: datastate}})
     }
     const renderButton = () => {
-        if (!button)
-            return (
-                <div className="btns">
-                    <button className="btn btn-primary viewbutton" onClick={toggleButtonState}>Detail View</button>
-                    <button className="btn btn-secondary graph-btn" onClick={handleGraphButton}>Show Graph</button>
-                </div>
-            );
-        else
-            return (
-                <div className="btns">
-                    <button className="btn btn-primary viewbutton" onClick={toggleButtonState}>Simple View</button>
-                    <button className="btn btn-secondary graph-btn" onClick={handleGraphButton}>Show Graph</button>
-                </div>
-            );
+        return (
+            <div className="btns">
+                <button className="btn btn-primary viewbutton" onClick={toggleButtonState} disabled={!isSuccess ? true : false}>{!button ? "Detail View" : "Simple View"}</button>
+                <button className="btn btn-secondary graph-btn" onClick={handleGraphButton} disabled={!isSuccess ? true : false}>Show Graph</button>
+            </div>
+        );
     }
     const renderMain = () => {
         return (
             <div className="main">
                 <form className="form-group search-form" onSubmit={getSearch}>
                     <input className="form-control search-textinput" type="text" value={search} onChange={updateSearch} />&nbsp;
-                    <input className="btn btn-primary search-button" type="submit" value="search" />
+                    <input className="btn btn-primary search-button mb-1 ml-1" type="submit" value="search" />
                 </form>
                 {renderButton()}
                 

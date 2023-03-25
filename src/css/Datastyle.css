@@ -6,27 +6,29 @@ text {
     height: 100%;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 .card {
-    width: 70%;
+    width: 30%;
     margin: 0 auto;
-    position: relative;
-    top: 100px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 50px;
+}
+.cart-content {
+    width: fit-content;
 }
 p {
     font-size: 15px;
     padding-bottom: 7px;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     .card {
-        width: 80%;
+        width: 70%;
     }
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 577px) {
     .card {
-        width: 90%;
+        width: 92%;
     }
 }

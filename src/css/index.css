@@ -23,3 +23,13 @@ html, body, #root, .main, .app, .main {
 .welcome-msg {
   padding-top: 4rem;
 }
+@media only screen and (max-width: 768px) {
+  .search-textinput {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .search-textinput {
+    width: 70%;
+  }
+}

@@ -15,7 +15,6 @@ export default function Graph() {
       datasets: [
         {
           label: data.text,
-          axis: 'y',
           data: [data.calories, data.totalNutrients.ENERC_KCAL.quantity,
           data.totalNutrients.FAT.quantity, data.totalNutrients.FASAT.quantity,
           data.totalNutrients.CHOLE.quantity, data.totalNutrients.CHOCDF.quantity,

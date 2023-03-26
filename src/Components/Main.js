@@ -18,7 +18,7 @@ function Main() {
             var data = await response.json();
             data.text = query;
             setData(data);
-            console.log(data);
+            // console.log(data);
             if (data && data.ingredients && typeof data.ingredients[0] !== 'undefined' &&
                 typeof data.ingredients[0].parsed !== 'undefined' && typeof data.ingredients[0].parsed[0] !== 'undefined' &&
                 data.ingredients[0].parsed[0].status === "OK") {

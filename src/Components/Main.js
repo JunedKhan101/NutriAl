@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import Data from "./Data";
 import { useHistory } from "react-router-dom";
 import "../css/index.css";
-require('dotenv').config()
 
 function Main() {
     const [datastate, setData] = useState({});
@@ -20,7 +19,9 @@ function Main() {
             data.text = query;
             setData(data);
             console.log(data);
-            if (data && data.ingredients && typeof data.ingredients[0] !== 'undefined' && typeof data.ingredients[0].parsed !== 'undefined' && typeof data.ingredients[0].parsed[0] !== 'undefined' && data.ingredients[0].parsed[0].status === "OK") {
+            if (data && data.ingredients && typeof data.ingredients[0] !== 'undefined' &&
+                typeof data.ingredients[0].parsed !== 'undefined' && typeof data.ingredients[0].parsed[0] !== 'undefined' &&
+                data.ingredients[0].parsed[0].status === "OK") {
                 console.log("parsed: ", true);
                 setIsSuccess(true);
             }
@@ -48,7 +49,7 @@ function Main() {
         return (
             <div className="btns">
                 <button className="btn btn-primary viewbutton" onClick={toggleButtonState} disabled={!isSuccess ? true : false}>{!button ? "Detail View" : "Simple View"}</button>
-                <button className="btn btn-secondary graph-btn" onClick={handleGraphButton} disabled={!isSuccess ? true : false}>Show Graph</button>
+                <button className="btn btn-secondary graph-btn" onClick={handleGraphButton} disabled={!isSuccess ? true : false}>Chart View</button>
             </div>
         );
     }

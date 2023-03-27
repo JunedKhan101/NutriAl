@@ -8,50 +8,47 @@ import "../css/Datastyle.css";
 export default function Graph() {
   const [context] = useContext(DataContext);
   var data = context;
-  if (!data && Object.keys(data).length === 0 && !data.ingredients && typeof data.ingredients[0] === 'undefined' &&
-    typeof data.ingredients[0].parsed === 'undefined' && typeof data.ingredients[0].parsed[0] === 'undefined' &&
-    data.ingredients[0].parsed[0].status !== "OK") {
-    return (<Error />);
-  }
-  var basicDataObject = {
-    "Calories": data.calories,
-    "Energy(kcal)": data.totalNutrients.ENERC_KCAL.quantity,
-    "Total Fat(g)": data.totalNutrients.FAT.quantity,
-    "Saturated Fat(g)": data.totalNutrients.FASAT.quantity,
-    "Cholestrol(mg)": data.totalNutrients.CHOLE.quantity,    
-    "total carbohydrate(g)": data.totalNutrients.CHOCDF.quantity,
-    "Dietry Fieber(g)": data.totalNutrients.FIBTG.quantity,
-    "Sugars(g)": data.totalNutrients.SUGAR.quantity,
-    "Protein(g)": data.totalNutrients.PROCNT.quantity
-  };
-  var fatDataObject = {
-    "Total Fat(g)": data.totalNutrients.FAT.quantity,
-    "Saturated(g)": data.totalNutrients.FASAT.quantity,
-    "Monosaturated(g)": data.totalNutrients.FAMS.quantity,
-    "Polyunsaturated(g)": data.totalNutrients.FAPU.quantity
-  };
-  var otherDataObject = {
-    "Sodium(mg)": data.totalNutrients.NA.quantity,
-    "Calcium(mg)": data.totalNutrients.CA.quantity,
-    "Magnesium(mg)": data.totalNutrients.MG.quantity,
-    "Potassium(mg)": data.totalNutrients.K.quantity,
-    "Iron(mg)": data.totalNutrients.FE.quantity,
-    "Zinc(mg)": data.totalNutrients.ZN.quantity,
-    "Phosphorus(mg)": data.totalNutrients.P.quantity,
-    "Vitamin A(µg)": data.totalNutrients.VITA_RAE.quantity,
-    "Vitamin C(mg)": data.totalNutrients.VITC.quantity,
-    "Vitamin B6(mg)": data.totalNutrients.VITB6A.quantity,
-    "Vitamin B12(µg)": data.totalNutrients.VITB12.quantity,
-    "Vitamin D(µg)": data.totalNutrients.VITD.quantity,
-    "Vitamin E(mg)": data.totalNutrients.TOCPHA.quantity,
-    "Vitamin K(µg)": data.totalNutrients.VITK1.quantity,
-    "Folic acid(µg)": data.totalNutrients.FOLAC.quantity
-  };
-  // To filter the null values from the data/object
-  let filteredBasicDataObject = Object.keys(basicDataObject).filter((k) => basicDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: basicDataObject[k] }), {});
-  let filteredFatDataObject = Object.keys(fatDataObject).filter((k) => fatDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: fatDataObject[k] }), {});
-  let filteredOtherDataObject = Object.keys(otherDataObject).filter((k) => otherDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: otherDataObject[k] }), {});
-  try {
+  if (data && data.ingredients && typeof data.ingredients[0] !== 'undefined' &&
+  typeof data.ingredients[0].parsed !== 'undefined' && typeof data.ingredients[0].parsed[0] !== 'undefined' &&
+  data.ingredients[0].parsed[0].status === "OK") {
+    var basicDataObject = {
+      "Calories": data.calories,
+      "Energy(kcal)": data.totalNutrients.ENERC_KCAL.quantity,
+      "Total Fat(g)": data.totalNutrients.FAT.quantity,
+      "Saturated Fat(g)": data.totalNutrients.FASAT.quantity,
+      "Cholestrol(mg)": data.totalNutrients.CHOLE.quantity,    
+      "total carbohydrate(g)": data.totalNutrients.CHOCDF.quantity,
+      "Dietry Fieber(g)": data.totalNutrients.FIBTG.quantity,
+      "Sugars(g)": data.totalNutrients.SUGAR.quantity,
+      "Protein(g)": data.totalNutrients.PROCNT.quantity
+    };
+    var fatDataObject = {
+      "Total Fat(g)": data.totalNutrients.FAT.quantity,
+      "Saturated(g)": data.totalNutrients.FASAT.quantity,
+      "Monosaturated(g)": data.totalNutrients.FAMS.quantity,
+      "Polyunsaturated(g)": data.totalNutrients.FAPU.quantity
+    };
+    var otherDataObject = {
+      "Sodium(mg)": data.totalNutrients.NA.quantity,
+      "Calcium(mg)": data.totalNutrients.CA.quantity,
+      "Magnesium(mg)": data.totalNutrients.MG.quantity,
+      "Potassium(mg)": data.totalNutrients.K.quantity,
+      "Iron(mg)": data.totalNutrients.FE.quantity,
+      "Zinc(mg)": data.totalNutrients.ZN.quantity,
+      "Phosphorus(mg)": data.totalNutrients.P.quantity,
+      "Vitamin A(µg)": data.totalNutrients.VITA_RAE.quantity,
+      "Vitamin C(mg)": data.totalNutrients.VITC.quantity,
+      "Vitamin B6(mg)": data.totalNutrients.VITB6A.quantity,
+      "Vitamin B12(µg)": data.totalNutrients.VITB12.quantity,
+      "Vitamin D(µg)": data.totalNutrients.VITD.quantity,
+      "Vitamin E(mg)": data.totalNutrients.TOCPHA.quantity,
+      "Vitamin K(µg)": data.totalNutrients.VITK1.quantity,
+      "Folic acid(µg)": data.totalNutrients.FOLAC.quantity
+    };
+    // To filter the null values from the data/object
+    let filteredBasicDataObject = Object.keys(basicDataObject).filter((k) => basicDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: basicDataObject[k] }), {});
+    let filteredFatDataObject = Object.keys(fatDataObject).filter((k) => fatDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: fatDataObject[k] }), {});
+    let filteredOtherDataObject = Object.keys(otherDataObject).filter((k) => otherDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: otherDataObject[k] }), {});
     var basicdata = {
       labels: Object.keys(filteredBasicDataObject),
       datasets: [
@@ -128,7 +125,7 @@ export default function Graph() {
             "rgba(221, 160, 221, 0.4)",
             "rgba(255, 239, 213, 0.4)",
             "rgba(35, 171, 234, 0.4)"
-
+  
           ],
           borderColor: [
             "rgba(47, 79, 79, 1)",
@@ -215,9 +212,7 @@ export default function Graph() {
       </div>
     );
   }
-  catch (e) {
-    return (
-      <Error />
-    );
+  else {
+    return (<Error />);
   }
 }

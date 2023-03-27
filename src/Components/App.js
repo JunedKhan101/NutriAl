@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import DataContext from "../Context/DataContext";
 import Main from "./Main";
 import Graph from "./Graph";
 import "../css/index.css";
@@ -9,12 +10,15 @@ import {
 } from "react-router-dom";
 
 export default function App() {
+  const [context, setContext] = useState({});
     return (
       <div className="app">
         <Router>
             <Switch>
-                <Route exact path="/" component={Main} />
-                <Route path="/graph" component={Graph} />
+              <DataContext.Provider value={[context, setContext]}>
+                  <Route exact path="/" component={Main} />
+                  <Route path="/graph" component={Graph} />
+              </DataContext.Provider>
             </Switch>
         </Router>
       </div>

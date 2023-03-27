@@ -1,13 +1,18 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useContext } from 'react';
+import DataContext from "../Context/DataContext";
 import { Bar } from 'react-chartjs-2';
 import Error from "./Error";
 import "../css/graph.css";
 import "../css/Datastyle.css";
 
 export default function Graph() {
-  const location = useLocation();
-  const data = location.state.datastate;
+  const [context] = useContext(DataContext);
+  var data = context;
+  if (!data && Object.keys(data).length === 0 && !data.ingredients && typeof data.ingredients[0] === 'undefined' &&
+    typeof data.ingredients[0].parsed === 'undefined' && typeof data.ingredients[0].parsed[0] === 'undefined' &&
+    data.ingredients[0].parsed[0].status !== "OK") {
+    return (<Error />);
+  }
   var basicDataObject = {
     "Calories": data.calories,
     "Energy(kcal)": data.totalNutrients.ENERC_KCAL.quantity,

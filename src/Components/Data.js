@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import DataContext from "../Context/DataContext";
 import NutritionFacts from "./NutritionFacts";
 import Loading from "./Loading";
 import Error from "./Error";
 import "../css/Datastyle.css";
 import "../css/nutrition-style.css";
 
-function Data({data, viewstate, isSuccessState, isLoadingState}) {
+function Data({viewstate, isSuccessState, isLoadingState}) {
+    const [context] = useContext(DataContext);
+    var data = context;
     const getHealthLabels = () => {
         if (data.healthLabels.length === 0) {
             return <p className="card-text">"None"</p>;

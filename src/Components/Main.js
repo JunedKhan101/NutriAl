@@ -34,6 +34,13 @@ function Main() {
         if (query)
             getData();
     }, [query, setContext]);
+    useEffect(() => {
+        if (context && context.ingredients && typeof context.ingredients[0] !== 'undefined' &&
+        typeof context.ingredients[0].parsed !== 'undefined' && typeof context.ingredients[0].parsed[0] !== 'undefined' &&
+        context.ingredients[0].parsed[0].status === "OK") {
+            setIsSuccess(true);
+        }
+    }, []);
     let history = useHistory();
     const updateSearch = e => {
         setSearch(e.target.value);

@@ -33,7 +33,7 @@ function Home() {
         }
         if (query)
             getData();
-    }, [query, context, setContext]);
+    }, [query]);
     useEffect(() => {
         if (context && context.ingredients && typeof context.ingredients[0] !== 'undefined' &&
         typeof context.ingredients[0].parsed !== 'undefined' && typeof context.ingredients[0].parsed[0] !== 'undefined' &&

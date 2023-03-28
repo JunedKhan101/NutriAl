@@ -4,7 +4,7 @@ import Data from "./Data";
 import { useHistory } from "react-router-dom";
 import "../css/index.css";
 
-function Main() {
+function Home() {
     const [context, setContext] = useContext(DataContext);
     const [search, setSearch] = useState("");
     const [query, setQuery] = useState("");
@@ -33,14 +33,14 @@ function Main() {
         }
         if (query)
             getData();
-    }, [query, setContext]);
+    }, [query, context, setContext]);
     useEffect(() => {
         if (context && context.ingredients && typeof context.ingredients[0] !== 'undefined' &&
         typeof context.ingredients[0].parsed !== 'undefined' && typeof context.ingredients[0].parsed[0] !== 'undefined' &&
         context.ingredients[0].parsed[0].status === "OK") {
             setIsSuccess(true);
         }
-    }, []);
+    }, [context]);
     let history = useHistory();
     const updateSearch = e => {
         setSearch(e.target.value);
@@ -79,4 +79,4 @@ function Main() {
         renderMain()
     );
 }
-export default Main;
+export default Home;

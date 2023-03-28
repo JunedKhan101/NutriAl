@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DataContext from "../Context/DataContext";
-import Main from "./Main";
+import Home from "./Home";
 import Graph from "./Graph";
 import "../css/index.css";
 import {
@@ -16,7 +16,7 @@ export default function App() {
         <Router>
             <Switch>
               <DataContext.Provider value={[context, setContext]}>
-                  <Route exact path="/" component={Main} />
+                  <Route exact path="/" component={Home} />
                   <Route path="/graph" component={Graph} />
               </DataContext.Provider>
             </Switch>

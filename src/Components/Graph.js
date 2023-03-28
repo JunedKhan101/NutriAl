@@ -1,25 +1,60 @@
-import react, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import React, { useContext } from 'react';
+import DataContext from "../Context/DataContext";
 import { Bar } from 'react-chartjs-2';
-import zoom from 'chartjs-plugin-zoom';
+import Error from "./Error";
 import "../css/graph.css";
 import "../css/Datastyle.css";
 
 export default function Graph() {
-  const location = useLocation();
-  const data = location.state.datastate;
-  try {
+  const [context] = useContext(DataContext);
+  var data = context;
+  if (data && data.ingredients && typeof data.ingredients[0] !== 'undefined' &&
+  typeof data.ingredients[0].parsed !== 'undefined' && typeof data.ingredients[0].parsed[0] !== 'undefined' &&
+  data.ingredients[0].parsed[0].status === "OK") {
+    var basicDataObject = {
+      "Calories": data.calories,
+      "Energy(kcal)": data.totalNutrients.ENERC_KCAL.quantity,
+      "Total Fat(g)": data.totalNutrients.FAT.quantity,
+      "Saturated Fat(g)": data.totalNutrients.FASAT.quantity,
+      "Cholestrol(mg)": data.totalNutrients.CHOLE.quantity,    
+      "total carbohydrate(g)": data.totalNutrients.CHOCDF.quantity,
+      "Dietry Fieber(g)": data.totalNutrients.FIBTG.quantity,
+      "Sugars(g)": data.totalNutrients.SUGAR.quantity,
+      "Protein(g)": data.totalNutrients.PROCNT.quantity
+    };
+    var fatDataObject = {
+      "Total Fat(g)": data.totalNutrients.FAT.quantity,
+      "Saturated(g)": data.totalNutrients.FASAT.quantity,
+      "Monosaturated(g)": data.totalNutrients.FAMS.quantity,
+      "Polyunsaturated(g)": data.totalNutrients.FAPU.quantity
+    };
+    var otherDataObject = {
+      "Sodium(mg)": data.totalNutrients.NA.quantity,
+      "Calcium(mg)": data.totalNutrients.CA.quantity,
+      "Magnesium(mg)": data.totalNutrients.MG.quantity,
+      "Potassium(mg)": data.totalNutrients.K.quantity,
+      "Iron(mg)": data.totalNutrients.FE.quantity,
+      "Zinc(mg)": data.totalNutrients.ZN.quantity,
+      "Phosphorus(mg)": data.totalNutrients.P.quantity,
+      "Vitamin A(µg)": data.totalNutrients.VITA_RAE.quantity,
+      "Vitamin C(mg)": data.totalNutrients.VITC.quantity,
+      "Vitamin B6(mg)": data.totalNutrients.VITB6A.quantity,
+      "Vitamin B12(µg)": data.totalNutrients.VITB12.quantity,
+      "Vitamin D(µg)": data.totalNutrients.VITD.quantity,
+      "Vitamin E(mg)": data.totalNutrients.TOCPHA.quantity,
+      "Vitamin K(µg)": data.totalNutrients.VITK1.quantity,
+      "Folic acid(µg)": data.totalNutrients.FOLAC.quantity
+    };
+    // To filter the null values from the data/object
+    let filteredBasicDataObject = Object.keys(basicDataObject).filter((k) => basicDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: basicDataObject[k] }), {});
+    let filteredFatDataObject = Object.keys(fatDataObject).filter((k) => fatDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: fatDataObject[k] }), {});
+    let filteredOtherDataObject = Object.keys(otherDataObject).filter((k) => otherDataObject[k] !== 0).reduce((a, k) => ({ ...a, [k]: otherDataObject[k] }), {});
     var basicdata = {
-      labels: ["Calories", "Energy(kcal)", "Total Fat(g)", "Saturated Fat(g)", "Cholestrol(mg)", 
-      "total carbohydrate(g)", "Dietry Fieber(g)", "Sugars(g)", "Protein(g)"],
+      labels: Object.keys(filteredBasicDataObject),
       datasets: [
         {
           label: data.text,
-          data: [data.calories, data.totalNutrients.ENERC_KCAL.quantity,
-            data.totalNutrients.FAT.quantity, data.totalNutrients.FASAT.quantity, 
-            data.totalNutrients.CHOLE.quantity, data.totalNutrients.CHOCDF.quantity,
-            data.totalNutrients.FIBTG.quantity, data.totalNutrients.SUGAR.quantity,
-            data.totalNutrients.PROCNT.quantity],
+          data: Object.values(filteredBasicDataObject),
           backgroundColor: [
             "rgba(255, 215, 0, 0.4)",
             "rgba(60, 179, 113, 0.4)",
@@ -30,7 +65,6 @@ export default function Graph() {
             "rgba(0, 0, 255, 0.4)",
             "rgba(255, 20, 147, 0.4)",
             "rgba(135, 206, 250, 0.4)"
-
           ],
           borderColor: [
             "rgba(255, 215, 0, 1)",
@@ -42,21 +76,17 @@ export default function Graph() {
             "rgba(0, 0, 255, 1)",
             "rgba(255, 20, 147, 1)",
             "rgba(135, 206, 250, 1)"
-
           ],
           borderWidth: 1,
         },
       ],
     };
     var fatdata = {
-      labels: ["Total Fat(g)", "Saturated(g)", "Monosaturated(g)", "Polyunsaturated(g)"],
+      labels: Object.keys(filteredFatDataObject),
       datasets: [
         {
           label: `Fats in ${data.text}`,
-          data: [
-            data.totalNutrients.FAT.quantity, data.totalNutrients.FASAT.quantity, 
-            data.totalNutrients.FAMS.quantity, data.totalNutrients.FAPU.quantity,
-          ],
+          data: Object.values(filteredFatDataObject),
           backgroundColor: [
             "rgba(255, 0, 0, 0.4)",
             "rgba(0, 255, 0, 0.4)",
@@ -74,21 +104,11 @@ export default function Graph() {
       ],
     };
     var otherdata = {
-      labels: ["Sodium(mg)", "Calcium(mg)", "Magnesium(mg)", "Potassium(mg)", "Iron(mg)", 
-      "Zinc(mg)", "Phosphorus(mg)", "Vitamin A(µg)", "Vitamin C(mg)", "Vitamin B6(mg)",
-      "Vitamin B12(µg)", "Vitamin D(µg)", "Vitamin E(mg)", "Vitamin K(µg)", "Folic acid(µg)"],
+      labels: Object.keys(filteredOtherDataObject),
       datasets: [
         {
           label: `Nutrients in ${data.text}`,
-          data: [
-            data.totalNutrients.NA.quantity, data.totalNutrients.CA.quantity,
-            data.totalNutrients.MG.quantity, data.totalNutrients.K.quantity, 
-            data.totalNutrients.FE.quantity, data.totalNutrients.ZN.quantity,
-            data.totalNutrients.P.quantity, data.totalNutrients.VITA_RAE.quantity,
-            data.totalNutrients.VITC.quantity, data.totalNutrients.VITB6A.quantity,
-            data.totalNutrients.VITB12.quantity, data.totalNutrients.VITD.quantity,
-            data.totalNutrients.TOCPHA.quantity, data.totalNutrients.VITK1.quantity,
-            data.totalNutrients.FOLAC.quantity],
+          data: Object.values(filteredOtherDataObject),
           backgroundColor: [
             "rgba(47, 79, 79, 0.4)",
             "rgba(107, 142, 35, 0.4)",
@@ -105,7 +125,7 @@ export default function Graph() {
             "rgba(221, 160, 221, 0.4)",
             "rgba(255, 239, 213, 0.4)",
             "rgba(35, 171, 234, 0.4)"
-
+  
           ],
           borderColor: [
             "rgba(47, 79, 79, 1)",
@@ -123,7 +143,6 @@ export default function Graph() {
             "rgba(221, 160, 221, 1)",
             "rgba(255, 239, 213, 1)",
             "rgba(35, 171, 234, 1)"
-
           ],
         },
       ],
@@ -131,68 +150,69 @@ export default function Graph() {
     var options = {
       maintainAspectRatio: true,
       scales: {
-        yAxes: [
+        xAxes: [
           {
             ticks: {
               beginAtZero: true,
+              fontColor: "black"
             },
-          },
+            gridLines: {
+              display: false
+            }
+          }
+        ],
+        yAxes: [
+          {
+            ticks: {
+              maxTicksLimit: 6,
+              fontColor: "black"
+            },
+            gridLines: {
+              color: "rgba(0, 0, 0, 0.1)",
+              zeroLineColor: "rgba(0, 0, 0, 0.1)"
+            }
+          }
         ],
       },
       plugins: {
-            zoom: {
-                // Container for pan options
-                pan: {
-                    // Boolean to enable panning
-                    enabled: true,
-
-                    // Panning directions. Remove the appropriate direction to disable 
-                    // Eg. 'y' would only allow panning in the y direction
-                    mode: 'xy'
-                },
-
-                // Container for zoom options
-                zoom: {
-                    // Boolean to enable zooming
-                    enabled: true,
-
-                    // Zooming directions. Remove the appropriate direction to disable 
-                    // Eg. 'y' would only allow zooming in the y direction
-                    mode: 'xy',
-                }
-            }
+        zoom: {
+          // Container for pan options
+          pan: {
+            // Boolean to enable panning
+            enabled: true,
+            // Panning directions. Remove the appropriate direction to disable 
+            // Eg. 'y' would only allow panning in the y direction
+            mode: 'xy'
+          },
+          // Container for zoom options
+          zoom: {
+            // Boolean to enable zooming
+            enabled: true,
+            // Zooming directions. Remove the appropriate direction to disable 
+            // Eg. 'y' would only allow zooming in the y direction
+            mode: 'xy',
+          }
         }
+      }
     };
-  return (
-    <div className="chart">
-      <h1>Basic Information</h1>
-      <div className="basic-graph">
-        <Bar data={basicdata} options={options} />
-      </div>
-      <h1>Fats</h1>
-      <div className="fat-graph">
-        <Bar data={fatdata} options={options} />
-      </div>
-      <h1>Other Nutrients</h1>
-      <div className="other-graph">
-        <Bar data={otherdata} options={options} />
-      </div>
-    </div>
-  );
-  }
-  catch(e) {
-    return(
-      <div className="card">
-        <div className="card-header">
-          Error
+    return (
+      <div className="chart">
+        <div className="basic-graph">
+          <h2>Basic Information</h2>
+          <Bar data={basicdata} options={options} />
         </div>
-        <div className="card-body">
-          <h3 className="card-title">An Error Occurred</h3>
-          Sorry I cannot understand what you mean here are couple of things you can try:<br />
-          1. Always add a quantity eg. 1 Apple<br />
-          2. Try to add a unit or measure eg. 1 cup coffee or 1 dozen banana<br />
+        <div className="fat-graph">
+          <h2>Fats</h2>
+          <Bar data={fatdata} options={options} />
+        </div>
+        <div className="other-graph">
+          <h2>Other Nutrients</h2>
+          <Bar data={otherdata} options={options} />
         </div>
       </div>
     );
+  }
+  else {
+    return (<Error />);
   }
 }

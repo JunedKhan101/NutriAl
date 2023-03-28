@@ -1,21 +1,26 @@
-import React from "react";
-import Main from "./Main";
+import React, { useState } from "react";
+import Navbar from "./Navbar";
+import DataContext from "../Context/DataContext";
+import Home from "./Home";
 import Graph from "./Graph";
 import "../css/index.css";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 export default function App() {
+  const [context, setContext] = useState({});
     return (
-      <div className="App">
+      <div className="app">
         <Router>
             <Switch>
-                <Route exact path="/" component={Main} />
-                <Route path="/graph" component={Graph} />
+              <DataContext.Provider value={[context, setContext]}>
+                  <Navbar />
+                  <Route exact path="/" component={Home} />
+                  <Route path="/graph" component={Graph} />
+              </DataContext.Provider>
             </Switch>
         </Router>
       </div>

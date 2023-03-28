@@ -1,15 +1,26 @@
 .chart {
+	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	gap: 50px;
 }
 .basic-graph, .other-graph, .fat-graph {
-	position: relative;
-	width: 900px;
-    height: 600px;
+	width: 60%;
+    height: auto;
 }
-@media only screen and (max-width: 892px) {
+@media only screen and (max-width: 768px) {
+	.basic-graph, .other-graph, .fat-graph {
+		width: 80%;
+	}
+}
+@media only screen and (max-width: 576px) {
+	.basic-graph, .other-graph, .fat-graph {
+		width: 100%;
+	}
+}
+/* @media only screen and (max-width: 892px) {
 	.basic-graph, .other-graph, .fat-graph {
 		width: 600px;
 		height: 500px;
@@ -29,12 +40,7 @@
 }
 @media only screen and (max-width: 400px) {
 	.basic-graph, .other-graph, .fat-graph {
-		left: 45%;
 		width: 700px;
 		height: 500px;
 	}
-	h1 {
-		position: relative;
-		left: 45%;
-	}
-}
+} */

@@ -1,78 +1,35 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html, body, #root, .main, .app, .main {
+  width: 100%;
+  height: 100%;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+.search-form {
+  width: 100%;
+  padding-top: 2rem;
 }
 .search-textinput {
     display: inline-block;
     width: 30%;
-    position: relative;
-    left: 32%;
-    top: 50px;
 }
-.search-button {
-    position: relative;
-    left: 32%;
-    top: 47px;
-    bottom: 3px;
+.viewbutton {
+  margin-right: 1rem;
 }
-.viewbutton{
-    position: relative;
-    left: 42%;
-    top: 70px;
-    bottom: 3px;
+.welcome-msg {
+  padding-top: 4rem;
 }
-.graph-btn {
-    position: relative;
-    left: 43%;
-    top: 70px;
-    bottom: 3px;
-}
-.space {
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    bottom: 0px;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 300px;
-    visibility: hidden;
-}
-@media only screen and (max-width: 999px) {
-  .viewbutton {
-    left: 40%;
-  }
-  .graph-btn {
-    left: 41%;
-  }
-}
-@media only screen and (max-width: 776px) {
-  .viewbutton {
-    left: 35%;
-  }
-  .graph-btn {
-    left: 36%;
-  }
-}
-@media only screen and (max-width: 430px) {
-  .viewbutton {
-    left: 25%;
-  }
-  .graph-btn {
-    left: 26%;
-  }
-  .search-button {
-    left: 25%;
-  }
+@media only screen and (max-width: 768px) {
   .search-textinput {
-    left: 25%;
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .search-textinput {
+    width: 70%;
   }
 }

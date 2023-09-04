@@ -38,32 +38,32 @@ export default function DetailsCard ({data}) {
         });
     }
     return (
-        <div className="card">
+        <div className="card mb-4">
             <div className="card-header">
-            {data.text ? data.text : "loading..."}
+                <p className="m-0 p-0">{data.text ? data.text : "loading..."}</p>
             </div>
-            <div className="card-body">
-            <h3 className="card-title">Calories: {data.calories}</h3>
+            <div className="card-body text-left">
+                <h3 className="card-title">Calories: {data.calories}</h3>
             </div>
-            <div className="card-body">
-            <h3 className="card-title">Total nutrients Kcal</h3>
-            {data.totalNutrientsKCal ? getObject("nutrientsKcal") : "loading..."}
+            <div className="card-body text-left">
+                <h3 className="card-title">Total nutrients Kcal</h3>
+                <p className="m-0 p-0">{data.totalNutrientsKCal ? getObject("nutrientsKcal") : "loading..."}</p>
             </div>
-            <div className="card-body">
-            <h3 className="card-title">Health Labels</h3>
-            {data.healthLabels ? getHealthLabels() : "loading..."}
+            <div className="card-body text-left">
+                <h3 className="card-title">Health Labels</h3>
+                <p className="m-0 p-0">{data.healthLabels ? getHealthLabels() : "loading..."}</p>
             </div>
-            <div className="card-body">
-            <h3 className="card-title">Cautions</h3>
-            {data.cautions ? getCautions() : "loading..."}
+            <div className="card-body text-left">
+                <h3 className="card-title">Cautions</h3>
+                <p className="m-0 p-0">{data.cautions ? getCautions() : "loading..."}</p>
             </div>
-            <div className="card-body">
-            <h3 className="card-title">Total Nutrients</h3>
-            {data.totalNutrients ? getObject("nutrients") : "loading..."}
+            <div className="card-body text-left">
+                <h3 className="card-title">Total Nutrients</h3>
+                <p className="m-0 p-0">{data.totalNutrients ? getObject("nutrients") : "loading..."}</p>
             </div>
-            <div className="card-body">
-            <h3 className="card-title">Total Daily</h3>
-            {data.totalNutrients ? getObject("daily") : "loading..."}
+            <div className="card-body text-left">
+                <h3 className="card-title">Total Daily</h3>
+                <p className="m-0 p-0">{data.totalNutrients ? getObject("daily") : "loading..."}</p>
             </div>
         </div>
     );

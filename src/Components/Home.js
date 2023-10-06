@@ -65,7 +65,7 @@ function Home() {
         return (
             <div className="main">
                 <form className="form-group search-form" onSubmit={getSearch}>
-                    <input className="form-control search-textinput" type="text" value={search} onChange={updateSearch} />&nbsp;
+                    <input className="form-control search-textinput" type="text" value={search} onChange={updateSearch} placeholder="1 cup coffee" />&nbsp;
                     <input className="btn btn-primary search-button mb-1 ml-1" type="submit" value="search" />
                 </form>
                 {renderButton()}

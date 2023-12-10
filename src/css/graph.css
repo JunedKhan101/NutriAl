@@ -20,27 +20,3 @@
 		width: 100%;
 	}
 }
-/* @media only screen and (max-width: 892px) {
-	.basic-graph, .other-graph, .fat-graph {
-		width: 600px;
-		height: 500px;
-	}
-}
-@media only screen and (max-width: 600px) {
-	.basic-graph, .other-graph, .fat-graph {
-		width: 100vw;
-		height: 50vw;
-	}
-}
-@media only screen and (max-width: 540px) {
-	.basic-graph, .other-graph, .fat-graph {
-		width: 400px;
-		height: 300px;
-	}
-}
-@media only screen and (max-width: 400px) {
-	.basic-graph, .other-graph, .fat-graph {
-		width: 700px;
-		height: 500px;
-	}
-} */

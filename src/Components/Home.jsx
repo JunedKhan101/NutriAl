@@ -15,7 +15,7 @@ function Home() {
         const getData = async () => {
             setIsLoading(true);
             // console.log("query: ", query);
-            const response = await fetch(`https://api.edamam.com/api/nutrition-data?app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}&ingr=${query}`);
+            const response = await fetch(`https://api.edamam.com/api/nutrition-data?app_id=${import.meta.env.VITE_ID}&app_key=${import.meta.env.VITE_KEY}&ingr=${query}`);
             var data = await response.json();
             data.text = query;
             setContext(data);
